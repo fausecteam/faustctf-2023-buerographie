@@ -1,0 +1,10 @@
+data/
+doc/
+test/
+node_modules/
+uploads/
+package-lock.json
+notes.txt
+ctf_gameserver
+ctf_gameserver_master/
+*_state.json

@@ -1,0 +1,32 @@
+.content {
+    max-width: 512px;
+    margin-top: 32px;
+    margin: auto;
+    text-align: center;
+}
+
+.content h1 {
+    color:rgb(216, 107, 114);
+    font-size: 24px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    margin: auto;
+    margin-bottom: 16px;
+    background-color: azure;
+    border-radius: 16px;
+    padding: 10px;
+}
+
+.form input {
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.form a {
+    margin: auto;
+}

@@ -1,0 +1,46 @@
+version: "2.2"
+# ipv6 is not supported in version 3
+
+services:
+  app-deps:
+    image: faust.cs.fau.de:5000/buerographie-deps
+    build:
+      context: src 
+      dockerfile: Dockerfile.deps
+    scale: 0
+
+  app:
+    image: faust.cs.fau.de:5000/buerographie-app
+    build: ./src
+    volumes:
+      - ./uploads:/app/uploads
+    ports:
+      - 13731:13731
+    environment:
+      DB_HOST: mysql
+      DB_USER: appuser
+      DB_PASSWORD: apppass
+      DB_NAME: buerodb
+      DB_ROOT_PASS: rootpass
+      PORT: 13731
+      NODE_ENV: production
+
+  mysql:
+    image: mysql:8.1.0
+    mem_limit: 512m
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppass
+      MYSQL_DATABASE: buerodb
+
+
+networks:
+  default:
+    enable_ipv6: true
+    ipam:
+        driver: default
+        config:
+            - subnet: "fd42:d0ce:137::/64"

@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    title Bürographie - staff
+    style
+      include ../public/staff.css
+  body
+    div(class='content')
+      h1 Welcome to your homepage!
+      div(class='single-p')
+        p Staff details
+      div(class='staff-table')
+        table
+          tr
+              td Username
+              td #{user}
+          tr
+              td Password
+              td ******
+          tr
+              td Onboard
+              td #{onboard}
+          tr
+              td Public message
+              td #{msg}
+          tr
+              td Supply
+              td #{supply}
+      div(class='message-form')
+        p Your message to the world
+        form(method="POST", action="/staff/message")
+          input(type="text", name="message", placeholder="Update your message")
+          br
+          input(type="submit", name="submit", value="post")
+      div(class='supply-form')
+        p Upload your personal office supply
+        form(method="POST", enctype="multipart/form-data", action="/staff/supply")
+          label(for="id", class="upload-supply")
+            input(type = "file", id="id", name = "supply", accept="text/plain")
+          br
+          input(type = "submit", name = "submit", value = "upload")
+      div(class='logout')
+        p Good bye
+        a(href = "/logout")
+          input(type = "button", value = "logout")

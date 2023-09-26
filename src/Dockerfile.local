@@ -1,0 +1,10 @@
+FROM node:20-bullseye
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+RUN npm install -g nodemon
+RUN apt update
+RUN apt install -y default-mysql-client
+# COPY *.js ./
+# COPY public ./public
+# CMD [ "node", "server.js" ]

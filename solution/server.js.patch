@@ -1,0 +1,59 @@
+diff --git a/src/server.js b/src/server.js
+index 34aaa54..71d08be 100644
+--- a/src/server.js
++++ b/src/server.js
+@@ -3,6 +3,7 @@ const express = require('express');
+ const esession = require('express-session');
+ const crypto = require('node:crypto');
+ const multer  = require('multer')
++const fs = require('node:fs')
+ 
+ /* not work with mysql
+  * ER_NOT_SUPPORTED_AUTH_MODE:
+@@ -98,8 +99,15 @@ app.post('/register', (req, res) => {
+         console.log('Post register failed: ' + err.message);
+         return res.status(500).send({'status': 'null'});
+       }
+-      console.log('Post register succeeded: ' + user);
+-      res.status(201).send({'status': 'registration successful'});
++      fs.mkdir('uploads/' + user, (err) => {
++        if (err) {
++          consoloe.log('Post register failed: ' + err.message);
++          return res.status(500).send({'status': 'null'});
++        } else {
++          console.log('Post register succeeded: ' + user);
++          return res.status(201).send({'status': 'registration successful'});
++        }
++      });
+     });
+   });
+ });
+@@ -254,7 +262,7 @@ app.post('/staff/message', (req, res) => {
+         var msg = (new TextEncoder()).encode(req.body.message);
+         var encmsgid = blockencrypt(keyBuffer, msg_id, len);
+         var encmsg = blockencrypt(keyBuffer, msg, len);
+-        msg = encmsg.toString('hex') + msg_id.toString('hex') + encmsgid.toString('hex');
++        msg = encmsg.toString('hex') + msg_id.toString('hex');// + encmsgid.toString('hex');
+         sql = `update stafftbl set message = ? where username = ?`;
+         db.query(sql, [msg, user], (req, result) => {
+           if(err) {
+@@ -290,7 +298,8 @@ app.get('/staff/message/:staff', (req, res) => {
+ 
+ const storage = multer.diskStorage({
+   destination: (req, file, cb) => {
+-    cb(null, 'uploads');
++    const user = req.session.user;
++    cb(null, 'uploads/' + user);
+   },
+   filename: (req, file, cb) => {
+     var  newname = crypto.createHash('sha1').update(req.session.user + file.originalname).digest('hex');
+@@ -349,8 +358,8 @@ app.post('/staff/supply',
+ );
+ 
+ app.get('/staff/supply/:fn', (req, res) => {
+-  var fn = '/app/uploads/' + req.params.fn;
+   var user = req.session.user;
++  var fn = '/app/uploads/' + user + '/' + req.params.fn;
+   console.log('Get staff supply: ' + fn);
+   var sql = `select supplyname from supplytbl where username = ?`;
+   db.query(sql, [user], (err, result) => {

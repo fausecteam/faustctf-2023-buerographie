@@ -1,0 +1,80 @@
+.content {
+    max-width: 1024px;
+    margin-top: 32px;
+    margin: auto;
+    text-align: center;
+}
+
+.content h1 {
+    color:rgb(216, 107, 114);
+    font-size: 24px;
+}
+
+p {
+    font-weight: bold;
+}
+
+.single-p {
+    text-align: left;
+    max-width: 620px;
+    margin: auto;
+}
+
+.staff-table {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    max-width: 620px;
+    margin: auto;
+    margin-bottom: 16px;
+    background-color: azure;
+    border-radius: 16px;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+
+.staff-table td:first-child {
+    text-align: right;
+    width: 20%;
+}
+
+.staff-table td:nth-child(2) {
+    text-align: left;
+    width: 80%;
+}
+
+.message-form {
+    text-align: left;
+    max-width: 620px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.message-form input {
+    margin-bottom: 6px;
+    border-radius: 4px;
+}
+
+ /* input[type="text"] {
+    margin-right: 4px;
+} */
+
+.supply-form {
+    text-align: left;
+    max-width: 620px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.supply-form input {
+    margin-bottom: 6px;
+    border-radius: 4px;
+}
+
+.logout {
+    text-align: left;
+    max-width: 620px;
+    margin: auto;
+    margin-top: 30px;
+}
