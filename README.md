@@ -1,8 +1,9 @@
-# Bürographie
+buerographie
+============
 
-This node service maintains some datasets of an employee, a message intended
-for the public and a supply file only for him/her self.
-Surprisingly, the associated endpoints are potentially exposed to security
-threats.
-As an administrator, you have to identify and fix them to protect your
-company's most precious asset - employee data.
+This is the source code for the "buerographie" service from [FAUST CTF 2023](https://2023.faustctf.net).
+
+**As it was written for a CTF service, the code is deliberately insecure and contains exploitable bugs. It
+is provided for educational purposes only, do not even think about (re-) using it for anything productive!**
+
+The code is released under the ISC License, see LICENSE.txt for details.
